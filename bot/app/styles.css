@@ -1,0 +1,86 @@
+/*.content {*/
+	/*background: #BDBDBD;*/
+	/*padding: 20px;*/
+/*}*/
+
+/*.messages {*/
+	/*border: 1px solid black;*/
+	/*overflow: hidden;*/
+	/*border-radius: 5px;*/
+	/*background: white;*/
+/*}*/
+
+/*.message {*/
+	/*border-bottom: 1px solid black;*/
+	/*padding: 15px;*/
+/*}*/
+
+/*.message.info {*/
+	/*background: #C5E1A5;*/
+/*}*/
+
+/*.message.error {*/
+	/*background: #EF5350;*/
+/*}*/
+
+/*.text {*/
+	/*font-size: 18px;*/
+	/*font-family: "Trebuchet MS", Helvetica, sans-serif;*/
+/*}*/
+
+/*.data {*/
+	/*margin: 15px 0;*/
+	/*word-wrap: break-word;*/
+/*}*/
+
+/*.time {*/
+	/*font-size: 14px;*/
+	/*font-weight: 600;*/
+	/*font-family: "Trebuchet MS", Helvetica, sans-serif;*/
+/*}*/
+
+
+.content,
+table.messages,
+table.messages thead,
+table.messages tbody {
+	display: block;
+	position: relative;
+	width: 100%;
+}
+
+tr {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	justify-content: stretch;
+}
+
+th.n, td.n {
+	width: 50px;
+	white-space: pre;
+	flex-shrink: 0;
+	text-align: center;
+}
+
+th.text, td.text {
+	width: 200px;
+	flex-shrink: 0;
+}
+
+th.data, td.data {
+	width: calc(100% - 50px - 200px - 160px);
+	white-space: normal;
+	word-wrap: break-word;
+}
+
+code {
+	white-space: pre-wrap;
+}
+
+th.time, td.time {
+	width: 160px;
+	white-space: pre;
+	flex-shrink: 0;
+}
