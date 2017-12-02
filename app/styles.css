@@ -1,9 +1,44 @@
+li {
+	list-style: none;
+}
+
 .my_name {
-	margin-right: 20px;
+	display: block;
 	cursor: pointer;
 }
 
+.start_bot {
+	top: calc(100% + 11px);
+	left: 0;
+	right: 0;
+	padding: .2rem .4rem;
+	font-size: 90%;
+	color: #bd4147;
+	background-color: #f8f9fa;
+	border-radius: .25rem;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid transparent;
+}
+
+.start_bot:hover {
+	color: #fff;
+	background-color: #dc3545;
+	border-color: #dc3545;
+	box-shadow: 0 0 0 0.2rem rgba(220,53,69,.5);
+}
+
+.my_name:after,
+.start_bot:after {
+	display: none !important;
+}
+
 .refresh_status {
+	cursor: pointer;
+}
+
+.badge.liked {
+	margin-left: 10px;
 	cursor: pointer;
 }
 

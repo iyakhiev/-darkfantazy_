@@ -91,13 +91,13 @@ Session.prototype.getAccountId = function() {
         .then(function () {
             return that._cookiesStore.getAccountId();
         })
-}
+};
 
 
 Session.prototype.setProxy = function(url) {
     this.proxyUrl = url;
     return this;
-}
+};
 
 
 Session.prototype.getAccount = function () {
@@ -185,7 +185,7 @@ Session.login = function(session, username, password) {
                 })
         })
         
-}
+};
 
 Session.create = function(device, storage, username, password, proxy) {
     var that = this;
@@ -200,4 +200,4 @@ Session.create = function(device, storage, username, password, proxy) {
             // We either not have valid cookes or authentication is not fain!
             return Session.login(session, username, password)
         })
-}
+};

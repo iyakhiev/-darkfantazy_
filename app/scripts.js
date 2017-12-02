@@ -1,7 +1,10 @@
 $(document).ready(() => {
 	let bot_data = {
+		account: 'darkfantazy_',
+		likes: 0,
 		status: false,
 		messages: [],
+		pull_time: 10000,
 
 		start: () => {
 			$.ajax({
@@ -9,7 +12,12 @@ $(document).ready(() => {
 				success: (data) => {
 					console.log('start', data);
 
-					bot_data.setStatus(data);
+					if (data && 'status' in data) {
+						bot_data.likes = Math.round(data.likes + 1);
+						bot_data.setStatus(data.status);
+					} else {
+						bot_data.setStatus(false);
+					}
 				},
 				error: (data) => {
 					console.log('error', data);
@@ -22,7 +30,12 @@ $(document).ready(() => {
 				success: (data) => {
 					console.log('refreshStatus', data);
 
-					bot_data.setStatus(data);
+					if (data && 'status' in data) {
+						bot_data.likes = Math.round(data.likes + 1);
+						bot_data.setStatus(data.status);
+					} else {
+						bot_data.setStatus(false);
+					}
 				},
 				error: (data) => {
 					console.log('error', data);
@@ -30,6 +43,7 @@ $(document).ready(() => {
 			});
 		},
 		setStatus: (status) => {
+			bot_data.status = status;
 			if (status) {
 				$('.badge-success').show();
 				$('.badge-danger').hide();
@@ -38,7 +52,7 @@ $(document).ready(() => {
 				$('.badge-danger').show();
 			}
 		},
-		loadMessages: () =>{
+		loadMessages: () => {
 			$.ajax({
 				url: 'messages',
 				success: (data) => {
@@ -57,13 +71,20 @@ $(document).ready(() => {
 				}
 			});
 		},
+		pullMessages: () => {
+			setInterval(() => {
+				if (bot_data.status) {
+					bot_data.loadMessages();
+				}
+			}, bot_data.pull_time);
+		},
 		renderMessages: (errors) => {
 			$('.messages tbody').html('');
 
-			let n = 1;
+			let n = 0;
 			bot_data.messages.forEach((message, i) => {
 				if (errors && message.type == 'error' || !errors) {
-					message.n = n++;
+					message.n = ++n;
 					message.class = message.type == 'error' ? 'table-danger' : '';
 
 					let template = $('#message').html();
@@ -72,11 +93,47 @@ $(document).ready(() => {
 					$('.messages tbody').prepend(rendered);
 				}
 			});
+
+			$('.messages_header .n').html(n);
+		},
+		loadLiked: () => {
+			$.ajax({
+				url: 'liked',
+				success: (data) => {
+					console.log('loadLiked', data);
+
+					if (data && 'status' in data) {
+						bot_data.setLikes(data.liked);
+						bot_data.setStatus(data.status);
+					} else {
+						bot_data.setStatus(false);
+					}
+				},
+				error: (data) => {
+					console.log('error', data);
+				}
+			});
+		},
+		pullLiked: () => {
+			setInterval(() => {
+				if (bot_data.status) {
+					bot_data.loadLiked();
+				}
+			}, bot_data.pull_time);
+		},
+		setLikes: (liked) => {
+			let title = liked + ' / ' + bot_data.likes;
+
+			$('.liked').html(title);
+			document.title = bot_data.account + " [" + title + "]";
 		}
 	};
 
+	$('.account').html(bot_data.account);
+
 	bot_data.refreshStatus();
-	bot_data.loadMessages();
+	bot_data.pullMessages();
+	bot_data.pullLiked();
 
 	$('.ms_show_all').on('click', () => {
 		bot_data.renderMessages();
@@ -92,6 +149,10 @@ $(document).ready(() => {
 
 	$('.refresh_status').on('click', () => {
 		bot_data.refreshStatus();
+	});
+
+	$('.refresh_likes').on('click', () => {
+		bot_data.loadLiked();
 	});
 
 	$('.start_bot').on('click', () => {

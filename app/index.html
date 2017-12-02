@@ -9,19 +9,23 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	<nav class="navbar navbar-dark bg-dark navbar-expand-sm sticky-top justify-content-between">
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+	<nav class="navbar navbar-dark bg-dark sticky-top justify-content-between navbar-expand">
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<span class="badge badge-success refresh_status" style="display: none">On</span>
 			<span class="badge badge-danger refresh_status">Off</span>
+			<span class="badge badge-light liked refresh_likes">0 / 0</span>
 		</div>
-		<code class="my_name start_bot">bot.darkfantazy_ <var>v.0.1</var></code>
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item dropdown">
+				<code class="my_name dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">bot.<span class="account"></span><var>&nbsp;v.0.2</var></code>
+				<code class="start_bot dropdown-menu dropdown-toggle" aria-labelledby="navbarDropdown">start / stop</code>
+			</li>
+
+		</ul>
 	</nav>
 	<div class="content container-fluid">
 		<div class="header">
-			<h1 class="display-4">Messages</h1>
+			<h1 class="display-4 messages_header">Messages [<span class="n">0</span>]</h1>
 			<button type="button" class="btn btn-info ms_refresh">Refresh</button>
 			<button type="button" class="btn btn-success ms_show_all">Show All</button>
 			<button type="button" class="btn btn-danger ms_show_errors">Only Errors</button>
