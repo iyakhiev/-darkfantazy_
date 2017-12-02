@@ -4,7 +4,7 @@ $(document).ready(() => {
 		likes: 0,
 		status: false,
 		messages: [],
-		pull_time: 10000,
+		pull_time: 1000 * 60,
 
 		start: () => {
 			$.ajax({
