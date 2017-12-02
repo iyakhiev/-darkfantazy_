@@ -1,0 +1,10 @@
+tmp
+.idea
+logs/*
+!.gitkeep
+node_modules/
+.DS_Store
+/server/config.json
+server/config.json
+/server/config_azure.json
+server/config_azure.json
