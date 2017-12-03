@@ -45,8 +45,11 @@ app.get('/start', function(req, res) {
 });
 
 app.get('/messages', function(req, res) {
+	let messages = [];
+
 	if (cheat && cheat.getMessages().length) {
-		cheat.getMessages().forEach((message) => {
+		messages = cheat.getMessages();
+		messages.forEach((message) => {
 			if (message.type == 'error') {
 				let found = false;
 
@@ -62,13 +65,9 @@ app.get('/messages', function(req, res) {
 		});
 	}
 
-	res.send(cheat ? {
-		status: cheat.executing,
-		messages: cheat.getMessages(),
-		errors: errors
-	} : {
-		status: false,
-		messages: [],
+	res.send({
+		status: cheat && cheat.executing,
+		messages: messages,
 		errors: errors
 	});
 });

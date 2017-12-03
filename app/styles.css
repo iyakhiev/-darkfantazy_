@@ -72,13 +72,13 @@ th.text, td.text {
 }
 
 th.data, td.data {
-	width: calc(100% - 50px - 200px - 160px);
+	width: calc(100% - 50px - 200px - 170px);
 	white-space: normal;
 	word-wrap: break-word;
 }
 
 th.time, td.time {
-	width: 160px;
+	width: 170px;
 	white-space: pre;
 	flex-shrink: 0;
 	text-align: center;
